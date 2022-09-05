@@ -155,6 +155,7 @@ namespace Adventure
     // --------------------------------------------------- ITEM CONTROLLERS ----------------------------------------------------------------
     public static class Items
     {
+        // --------------------------- 1. Beverage -------------------------------
         public static void beverageChoice() {
            Boolean validatebeverageSelection = false; 
            Console.WriteLine("\nIt begins on a cold rainy night. You're sitting in your shack struggling to make a choice of beverage...");
@@ -220,7 +221,7 @@ namespace Adventure
            }
                 Thread.Sleep(5000);
         }
-
+        // --------------------------- 2. Hooded man -------------------------------
         public static void hoodedManChoice() {
            Console.WriteLine("You see some light at the end of the woods and see a hooded figure at the edge.\n");
            Thread.Sleep(3000);
@@ -273,6 +274,7 @@ namespace Adventure
            Thread.Sleep(5000);
         }
 
+        // --------------------------- 3. Stone Bridge -------------------------------
         public static void stoneBridgeChoice() {
             Thread.Sleep(2000);
             Console.WriteLine("\nYou see an old stone bridge that looks as though it could give way at any moment"); 
@@ -377,6 +379,12 @@ namespace Adventure
                 Game.validateGameOver();
                 Thread.Sleep(5000);
         }
+
+        // --------------------------- 4. Draugr -------------------------------
+
+        public static void draugrChoice() {
+
+        }
     }
 
     public static class AcsiiArt
@@ -444,6 +452,18 @@ namespace Adventure
             Game.CyanTextWriteLine(@"~ _~~- ~^-^~-^~~- ^~_^-^~~_ -~^_ -~_-~~^- _~~_~-^_ ~^-^~~-_^-~ ~^");
             Game.CyanTextWriteLine(@"   ~ ^- _~~_-  ~~ _ ~  ^~  - ~~^ _ -  ^~-  ~ _  ~~^  - ~_   - ~^_~");
         }
+
+        public static void draugrArt() {
+            Game.RedTextWriteLine(@"                    ");
+            Game.RedTextWriteLine(@"     /\      _______ ");
+            Game.RedTextWriteLine(@"     ||      \_   _/  ");
+            Game.RedTextWriteLine(@"     ||     \|0   0|/");
+            Game.RedTextWriteLine(@"    _\/_   _(_  ^  _)_");
+            Game.RedTextWriteLine(@"   ( () )  `\|''_''|/` ");
+            Game.RedTextWriteLine(@"     {}      \_____/   ");
+            Game.RedTextWriteLine(@"     ()     |  )=(  |  ");
+            Game.RedTextWriteLine(@"     {}    | _/\=/\_ |  ");
+        }
     }
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -463,9 +483,8 @@ namespace Adventure
            Console.WriteLine("------------------------------------------------------\n");
            Thread.Sleep(3000);  
 
-
-
            // First decision 
+
            Items.beverageChoice();
 
            Console.WriteLine("You collect your things and exit your shack situated in the forest. The road is long and you are starting to get tired and wonder why you were chosen for this quest.");
@@ -479,7 +498,7 @@ namespace Adventure
            // Third decision
            Items.stoneBridgeChoice(); 
 
-           Console.WriteLine("\nyou complete the bridge"); 
+           Console.WriteLine("\nYou make some distance between you and the bridge.. you walk for what seems for hours, snacking occasionally on your provisions for your journey.."); 
            // Stops program from closing straight away
            Console.ReadLine();
         }
