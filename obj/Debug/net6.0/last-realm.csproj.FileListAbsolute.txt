@@ -1,0 +1,15 @@
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\bin\Debug\net6.0\last-realm.exe
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\bin\Debug\net6.0\last-realm.deps.json
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\bin\Debug\net6.0\last-realm.runtimeconfig.json
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\bin\Debug\net6.0\last-realm.dll
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\bin\Debug\net6.0\last-realm.pdb
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.csproj.AssemblyReference.cache
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.AssemblyInfoInputs.cache
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.AssemblyInfo.cs
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.csproj.CoreCompileInputs.cache
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.dll
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\refint\last-realm.dll
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.pdb
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\last-realm.genruntimeconfig.cache
+C:\Users\benb8\OneDrive\Desktop\Web Development\codecademy\last-realm\obj\Debug\net6.0\ref\last-realm.dll
