@@ -42,17 +42,50 @@ namespace Adventure
                 System.Environment.Exit(0);
             } else if (Game.CharacterRaceStore.characterStr < 1) {
                 RedTextWriteLine($"Str: {Game.CharacterRaceStore.characterStr}");
+                AcsiiArt.deathArt();
                 RedTextWriteLine("You have lost all your energy, you are too weak to continue your quest..");
                 Console.WriteLine("Try again!");
                 Console.ReadLine();
                 System.Environment.Exit(0);
             } else if (Game.CharacterRaceStore.characterWit < 1) {
                 RedTextWriteLine($"Wit: {Game.CharacterRaceStore.characterWit}");
+                AcsiiArt.deathArt();
                 RedTextWriteLine("You have lost your sanity, you are not fit to complete your quest.");
                 Console.WriteLine("Try again!");
                 Console.ReadLine();
                 System.Environment.Exit(0);
             }
+        }
+
+        // Rolls a dice based on character HP, Str or Wit and returns a percentage of chance of succeed
+        public static int rollDice(string option) {
+            int diceRoll = 0;
+            if (option == "A") {
+                if (Game.CharacterRaceStore.characterRace == "Elf") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterHealth * 100) / 5);
+                } else if (Game.CharacterRaceStore.characterRace == "Human") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterHealth * 100) / 6);
+                } else if (Game.CharacterRaceStore.characterRace == "Dwarf") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterHealth * 100) / 7);
+                }
+            } else if (option == "B") {
+                if (Game.CharacterRaceStore.characterRace == "Elf") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterWit * 100) / 7);
+                } else if (Game.CharacterRaceStore.characterRace == "Human") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterWit * 100) / 7);
+                } else if (Game.CharacterRaceStore.characterRace == "Dwarf") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterWit * 100) / 5);
+                }
+            } else if (option == "C") {
+                if (Game.CharacterRaceStore.characterRace == "Elf") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterStr * 100) / 7);
+                } else if (Game.CharacterRaceStore.characterRace == "Human") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterStr * 100) / 7);
+                } else if (Game.CharacterRaceStore.characterRace == "Dwarf") {
+                diceRoll = (int)Math.Round((double)(Game.CharacterRaceStore.characterStr * 100) / 5);
+                } 
+            }
+            return diceRoll;
         }
 
          // --- TEXT COLORS ---
@@ -150,7 +183,7 @@ namespace Adventure
             }
            }
         }
-    }
+    } // End of Game class
 
     // --------------------------------------------------- ITEM CONTROLLERS ----------------------------------------------------------------
     public static class Items
@@ -241,6 +274,8 @@ namespace Adventure
                 Thread.Sleep(2000);
                 Console.WriteLine("\nThe hooded man gives you a Vegvisir pendant.. A old protection symbol used on long and perilous journeys.");
                 Game.GreenTextWriteLine("+ 1 Str\n");
+                Console.WriteLine("\nPress the 'Enter' key..");
+                Console.ReadLine();
                 ++Game.CharacterRaceStore.characterStr;
             } else if (hoodedChoice == "B") {
                 Console.WriteLine("\nThe hooded man chuckles to himself with a friendly pat to the shoulder.. Anyone else and you would of backed away by now, however you can sense the man means you no harm.");
@@ -248,6 +283,8 @@ namespace Adventure
                 Game.YellowTextWriteLine($"\n'Relax, {Game.CharacterRaceStore.characterRace}. I mean you no harm. Freya has appointed me to give you an item to have on your travels. My name is Mímir, I was once affiliated with the Aesir, however I now assist Freya with protecting her realm.'");
                 Console.WriteLine("\nThe hooded man gives you a Vegvisir pendant.. A old protection symbol used on long and perilous journeys.");
                 Game.GreenTextWriteLine("+ 1 Str\n");
+                Console.WriteLine("\nPress the 'Enter' key..");
+                Console.ReadLine();
                 ++Game.CharacterRaceStore.characterStr;
             } else if (hoodedChoice == "C") {
                 Console.WriteLine("You attack the hooded man with your sword...");
@@ -267,7 +304,6 @@ namespace Adventure
                 Console.ReadLine();
                 System.Environment.Exit(0);
             }
-           Thread.Sleep(3000);
            Game.YellowTextWriteLine($"'Carry on down this path {Game.CharacterNameStore}... This will lead you to the Yggdrasil portal, you must close the enterance to this realm so peace may finally return.'");
            Thread.Sleep(3000);
            Console.WriteLine("\nYou continue down the path where Mimir directed you. You feel as though your journey has just begun....\n");
@@ -309,7 +345,7 @@ namespace Adventure
                             validateBridgeSelection = true;
                         } else if (Game.CharacterRaceStore.characterRace == "Human") {
                             Console.WriteLine("\nYou create a make-shift rope from your Human intelligence and swing across successfully..");
-                            Game.RedTextWriteLine("+ 1 Wit\n");
+                            Game.GreenTextWriteLine("+ 1 Wit\n");
                             ++Game.CharacterRaceStore.characterWit;
                             validateBridgeSelection = true;
                         } else if (Game.CharacterRaceStore.characterRace == "Dwarf") {
@@ -342,7 +378,7 @@ namespace Adventure
                             Console.WriteLine("\nYou attempt to brave the river...");
                             Thread.Sleep(3000);
                             Console.WriteLine("\nYour brutish body of a Dwarf is able to easily get across the river with ease.");
-                            Game.RedTextWriteLine("+ 1 Wit\n");
+                            Game.GreenTextWriteLine("+ 1 Wit\n");
                             ++Game.CharacterRaceStore.characterWit;
                             validateBridgeSelection = true;
                         }
@@ -351,7 +387,7 @@ namespace Adventure
                             Console.WriteLine("\nYou attempt to sprint across the bridge...");
                             Thread.Sleep(3000);
                             Console.WriteLine("\nYour Elven agility is unmatched.. you quickly get across the bridge with no harm.");
-                            Game.RedTextWriteLine("+ 1 Wit\n");
+                            Game.GreenTextWriteLine("+ 1 Wit\n");
                             ++Game.CharacterRaceStore.characterWit;
                             validateBridgeSelection = true;
                         } else if (Game.CharacterRaceStore.characterRace == "Human") {
@@ -379,13 +415,80 @@ namespace Adventure
                 Game.validateGameOver();
                 Thread.Sleep(5000);
         }
+        
 
         // --------------------------- 4. Draugr -------------------------------
 
         public static void draugrChoice() {
+            Console.WriteLine("\nYou come across a crpyt.. You don't see any other way round to progress on your journey and decide to go through the decrepit location..."); 
+            Thread.Sleep(5000);
+            AcsiiArt.crpytEnterance();
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            Console.WriteLine("\nThe door is heavy and takes a lot of your strength to open, as you progress through the fowl smelling labyrinth you sense something is watching or following you."); 
+            Thread.Sleep(3000);
+            Console.WriteLine("\nYou make no mistake identifying the smell.. remembering the stories of Nord warriors, bound to death, forever to wander their tombs.. you turn with your weapon in hand.."); 
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            AcsiiArt.draugrArt();
+            Console.WriteLine("\nIt's a Draugr! This event is chance based on your skills, choose wisely..");
+            
+            Boolean validateDraugrSelection = false; 
+            
+                while (!validateDraugrSelection) {
+                Game.CharacterStats();
+                Random RandomDiceRoll = new Random();
+                int draugerDiceRoll = RandomDiceRoll.Next(0, 100);
+                Console.WriteLine($"\nA. Attack the creature. {Game.rollDice("A")}% chance.");
+                Console.WriteLine($"\nB. Attempt to escape. {Game.rollDice("B")}% chance.");
+                Console.WriteLine($"\nC. Stand your ground. {Game.rollDice("C")}% chance.");
+                string draugrFightChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
 
+                if (draugrFightChoice == "A") {
+                        if (draugerDiceRoll < Game.rollDice("A")) {
+                            Console.WriteLine("/nYou charge the creature with all your might, it stands no chance against you.");
+                            validateDraugrSelection = true;
+                        } else {
+                            Console.WriteLine("\nYou charge the creature and lose your footing, the Draugr swipes at you..");
+                            Game.RedTextWriteLine("\n- 1 HP");
+                            --Game.CharacterRaceStore.characterHealth;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nYou narrowly escape.. How clumsy..");
+                            validateDraugrSelection = true;
+                        }
+                } else if (draugrFightChoice == "B") {
+                        if (draugerDiceRoll < Game.rollDice("B")) {
+                            Console.WriteLine("\nYou realise losing your life isnt worth it over your quest. You make a quick get away out of the catacombs..");
+                            validateDraugrSelection = true;
+                        } else {
+                            Console.WriteLine("\nYou attempt to escape past the Draugr, however the undead beast throws it's axe whilst you escape and hits you shoulder..");
+                            Game.RedTextWriteLine("\n- 1 HP");
+                            --Game.CharacterRaceStore.characterHealth;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nYou narrowly escape.. How clumsy..");
+                            validateDraugrSelection = true;
+                        }
+                } else if (draugrFightChoice == "C") {
+                        if (draugerDiceRoll < Game.rollDice("C")) {
+                            Console.WriteLine("\nYou stand your ground.. the Draugr may be undead but it realises your skill in battle and fears death a second time. The monster lets you pass..");
+                            validateDraugrSelection = true;
+                        } else {
+                            Console.WriteLine("\nYou hold your ground against the undead, however it uses this as a chance to strike The Draugr hits your shoulder..");
+                            Game.RedTextWriteLine("\n- 1 HP");
+                            --Game.CharacterRaceStore.characterHealth;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nYou narrowly escape.. How clumsy..");
+                            validateDraugrSelection = true;
+                        }
+                } else {
+                        Console.WriteLine("You must pick A, B or C...");
+                        validateDraugrSelection = false;
+                    }
+                }
+            Thread.Sleep(5000);
         }
-    }
+    } // end of Items class
 
     public static class AcsiiArt
     {
@@ -453,6 +556,25 @@ namespace Adventure
             Game.CyanTextWriteLine(@"   ~ ^- _~~_-  ~~ _ ~  ^~  - ~~^ _ -  ^~-  ~ _  ~~^  - ~_   - ~^_~");
         }
 
+        public static void crpytEnterance() {
+            Console.WriteLine(@"|____________________________________________|");
+            Console.WriteLine(@"|__||  ||___||  |_|___|___|__|  ||___||  ||__|");
+            Console.WriteLine(@"||__|  |__|__|  |___|___|___||  |__|__|  |__||");
+            Console.WriteLine(@"|__||  ||___||  |_|___|___|__|  ||___||  ||__|");
+            Console.WriteLine(@"||__|  |__|__|  |    || |    |  |__|__|  |__||");
+            Console.WriteLine(@"|__||  ||___||  |    || |    |  ||___||  ||__|");
+            Console.WriteLine(@"||__|  |__|__|  |    || |    |  |__|__|  |__||");
+            Console.WriteLine(@"|__||  ||___||  |    || |    |  ||___||  ||__|");
+            Console.WriteLine(@"||__|  |__|__|  |    || |    |  |__|__|  |__||");
+            Console.WriteLine(@"|__||  ||___||  |   O|| |O   |  ||___||  ||__|");
+            Console.WriteLine(@"||__|  |__|__|  |    || |    |  |__|__|  |__||");
+            Console.WriteLine(@"|__||  ||___||  |    || |    |  ||___||  ||__|");
+            Console.WriteLine(@"||__|  |__|__|__|____||_|____|  |__|__|  |__||");
+            Console.WriteLine(@"|LLL|  |LLLLL|______________||  |LLLLL|  |LLL|");
+            Console.WriteLine(@"|LLL|  |LLL|______________|  |  |LLLLL|  |LLL|");
+            Console.WriteLine(@"|LLL|__|L|______________|____|__|LLLLL|__|LLL|");
+        }
+
         public static void draugrArt() {
             Game.RedTextWriteLine(@"                    ");
             Game.RedTextWriteLine(@"     /\      _______ ");
@@ -464,7 +586,7 @@ namespace Adventure
             Game.RedTextWriteLine(@"     ()     |  )=(  |  ");
             Game.RedTextWriteLine(@"     {}    | _/\=/\_ |  ");
         }
-    }
+    } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
     public static class Program
@@ -484,7 +606,6 @@ namespace Adventure
            Thread.Sleep(3000);  
 
            // First decision 
-
            Items.beverageChoice();
 
            Console.WriteLine("You collect your things and exit your shack situated in the forest. The road is long and you are starting to get tired and wonder why you were chosen for this quest.");
@@ -498,7 +619,15 @@ namespace Adventure
            // Third decision
            Items.stoneBridgeChoice(); 
 
-           Console.WriteLine("\nYou make some distance between you and the bridge.. you walk for what seems for hours, snacking occasionally on your provisions for your journey.."); 
+           Console.WriteLine("\nYou make some distance between you and the bridge.. you walk for what seems for hours, snacking occasionally on your provisions you made for your journey.."); 
+           
+           // Forth decision
+           Items.draugrChoice();
+
+           Console.WriteLine("\nYou make your way out of the decrepit catacombs. You feel as though you can finally breathe when you exit into plains."); 
+           Thread.Sleep(3000);
+           Console.WriteLine("\nYou look into the distance and see the portal's silhouette.. your end goal. You contine you on your path."); 
+           
            // Stops program from closing straight away
            Console.ReadLine();
         }
