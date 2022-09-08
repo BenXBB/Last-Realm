@@ -447,7 +447,7 @@ namespace Adventure
 
                 if (draugrFightChoice == "A") {
                         if (draugerDiceRoll < Game.rollDice("A")) {
-                            Console.WriteLine("/nYou charge the creature with all your might, it stands no chance against you.");
+                            Console.WriteLine("\nYou charge the creature with all your might, it stands no chance against you.");
                             validateDraugrSelection = true;
                         } else {
                             Console.WriteLine("\nYou charge the creature and lose your footing, the Draugr swipes at you..");
@@ -590,9 +590,9 @@ namespace Adventure
                             Console.WriteLine("\nPress 'Enter' to continue..");
                             Console.ReadLine();
                             Console.WriteLine("\nYour ponder your choice as you loot the Dwarf's body for a Health potion..");
-                            Game.GreenTextWriteLine("+ 1 HP\n");
+                            Game.GreenTextWriteLine("+ 1 HP");
                             ++Game.CharacterRaceStore.characterHealth;
-                            Game.RedTextWriteLine("\n- 1 Wit");
+                            Game.RedTextWriteLine("- 1 Wit");
                             --Game.CharacterRaceStore.characterWit;
                             Game.validateGameOver();
                             Console.WriteLine("\nPress 'Enter' to continue..");
