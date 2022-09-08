@@ -606,6 +606,113 @@ namespace Adventure
                 }
         }
 
+        // --------------------------- 5. Fairy Choice -------------------------------
+        public static void fairyChoice() {
+            Console.WriteLine("\nAs you walk through the forest you are unsheathe your weapon.. you sense something approaching you.."); 
+            Thread.Sleep(5000);
+            Console.WriteLine("\nIt looks to be a distressed Fairy..");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            AcsiiArt.fairyArt();
+            Console.WriteLine("\nThe creature begs for you to follow it.."); 
+            Thread.Sleep(3000);
+            Game.YellowTextWriteLine($"\nPlease {Game.CharacterRaceStore.characterRace}, I need your help! My companion is trapped under a tree branch.. We are too weak to move it!"); 
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            Boolean validateFairySelection = false; 
+            
+                while (!validateFairySelection) {
+                Game.CharacterStats();
+                Random RandomDiceRoll = new Random();
+                int fairytDiceRoll = RandomDiceRoll.Next(0, 100);
+                Console.WriteLine($"\nYou choose to..");
+                Console.WriteLine($"\nA. Assist the creature");
+                Console.WriteLine($"\nB. Continue on your journey, you dont have time to help rodents.");
+                Console.WriteLine($"\nC. Kill the creature and use it's magic to empower yourself. {Game.rollDice("B")}% chance.");
+                string fairyChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (fairyChoice == "A") {
+                        Console.WriteLine("/nYou run to aid the creature..");
+                        Thread.Sleep(3000);
+                            switch (Game.CharacterRaceStore.characterRace) {
+                            case "Elf":
+                            Console.WriteLine("\nIt takes some time, however you are able to help move the branch with your weak Elven strength and the creature is saved!");
+                            Game.YellowTextWriteLine($"\nFairy: Thank you {Game.CharacterRaceStore.characterRace}, you have saved their life!"); 
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Console.WriteLine("\nThe Fairies bless your strength.. regaining the strength you lost helping the creatures.");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Human":
+                            Console.WriteLine("\nIt takes some time, however you are able to help move the branch using your Human intellect by constructing a lever!");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe fairies are both astounded by your wits and pledge themselves to you. The magical strength between a Human and Fairy is strong!");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Game.YellowTextWriteLine($"\nFairy: You have our oath {Game.CharacterRaceStore.characterRace}, when you need us, we will be there!"); 
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            Game.GreenTextWriteLine("+ 1 Str");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            ++Game.CharacterRaceStore.characterStr;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Dwarf":
+                            Console.WriteLine("\nYour Dwarven strength makes short work of the branch, you remove it easily..");
+                            Game.YellowTextWriteLine($"\nFairy: Thank you {Game.CharacterRaceStore.characterRace}, you have saved their life!"); 
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Console.WriteLine("\nThe Fairies bless your strength..");
+                            Game.GreenTextWriteLine("+ 1 Str");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            }
+                        validateFairySelection = true;
+                } else if (fairyChoice == "B") {
+                        Console.WriteLine("\nYou decide that you do not have time to assist and continue on your journey..");
+                        Console.WriteLine("\nThe Fairy watches you leave, visibly upset.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateFairySelection = true;
+                } else if (fairyChoice == "C") {
+                        if (fairytDiceRoll < Game.rollDice("B")) {
+                            Console.WriteLine("\nYou grab the creature and siphon it's energy.. you feel empowered but ponder your decision.");
+                            Thread.Sleep(3000);
+                            Game.GreenTextWriteLine("+ 2 Str");
+                            ++Game.CharacterRaceStore.characterStr;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validateFairySelection = true;
+                        } else {
+                            Console.WriteLine("\nYou attempt to grab the creature..");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Fairy senses your action.. It quickly dodges and casts a weakening spell on you.");
+                            Game.YellowTextWriteLine($"\nFairy: No you don't!"); 
+                            Thread.Sleep(3000);
+                            Game.RedTextWriteLine("- 1 Str");
+                            --Game.CharacterRaceStore.characterStr;
+                            Game.RedTextWriteLine("- 1 Wit");
+                            --Game.CharacterRaceStore.characterWit;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nYou fall to your knee for a second before getting up and continuing on..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validateFairySelection = true;
+                        }
+                } else {
+                        Console.WriteLine("You must pick A, B or C...");
+                        validateFairySelection = false;
+                    }
+                }
+        }
+
     } // end of Items class
 
     public static class AcsiiArt
@@ -722,6 +829,27 @@ namespace Adventure
             Game.GreenTextWriteLine(@"    ~  ><> ~    \  '                '          (  )   ,'    ;  (,__)_)");
             Game.GreenTextWriteLine(@"~     ~~~~       |           '            '   |_ | ),'       '        '");
         }
+
+        public static void fairyArt() {
+            Game.DarkBlueTextWriteLine(@"                   ,_  .--.");
+            Game.DarkBlueTextWriteLine(@"             , ,   _)\/    ;--.");
+            Game.DarkBlueTextWriteLine(@"     . ' .    \_\-'   |  .'    \");
+            Game.DarkBlueTextWriteLine(@"    -= * =-   (.-,   /  /       |");
+            Game.DarkBlueTextWriteLine(@"     ' .\'    ).  ))/ .'   _/\ /");
+            Game.DarkBlueTextWriteLine(@"         \_   \_  /( /     \ /(");
+            Game.DarkBlueTextWriteLine(@"         /_\ .--'   `-.    //  \");
+            Game.DarkBlueTextWriteLine(@"         ||\/        , '._//    |");
+            Game.DarkBlueTextWriteLine(@"         ||/ /`(_ (_,;`-._/     /");
+            Game.DarkBlueTextWriteLine(@"         \_.'   )   /`\       .'");
+            Game.DarkBlueTextWriteLine(@"              .' .  |  ;.   /`");
+            Game.DarkBlueTextWriteLine(@"             /      |\(  `.(");
+            Game.DarkBlueTextWriteLine(@"            |   |/  | `    `");
+            Game.DarkBlueTextWriteLine(@"            |   |  /");
+            Game.DarkBlueTextWriteLine(@"            |   |.'");
+            Game.DarkBlueTextWriteLine(@"         __/'  /");
+            Game.DarkBlueTextWriteLine(@"     _ .'  _.-`");
+            Game.DarkBlueTextWriteLine(@"  _.` `.-;`/");
+        }
     } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -766,6 +894,12 @@ namespace Adventure
 
            // Fifth decision
            Items.dwarfChest();
+
+           Console.WriteLine("\nYou enter the southern forest of RingFord, inhabited mostly by Fairies, a sub-race of the Vanir that would aid Humans on their duties.."); 
+           Thread.Sleep(3000);
+
+           // Sixth decision
+           Items.fairyChoice();
            
            // Stops program from closing straight away
            Console.ReadLine();
