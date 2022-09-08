@@ -606,7 +606,7 @@ namespace Adventure
                 }
         }
 
-        // --------------------------- 5. Fairy Choice -------------------------------
+        // --------------------------- 6. Fairy Choice -------------------------------
         public static void fairyChoice() {
             Console.WriteLine("\nAs you walk through the forest you are unsheathe your weapon.. you sense something approaching you.."); 
             Thread.Sleep(5000);
@@ -709,6 +709,121 @@ namespace Adventure
                 } else {
                         Console.WriteLine("You must pick A, B or C...");
                         validateFairySelection = false;
+                    }
+                }
+        }
+
+         // --------------------------- 7. Night Elf -------------------------------
+        public static void woodElfChoice() {
+            if (Game.CharacterRaceStore.characterRace == "Elf") {
+                Console.WriteLine("\nThis place almost feels familiar to your home in Alfheim..");
+            }
+            Console.WriteLine("\nYou walk through the forest and see what looks to be purple bloodprints.."); 
+            Thread.Sleep(5000);
+            Console.WriteLine("\nYou follow the tracks to what can be described as some kind of Elf.. The humanoid seems to be suffering from an injury, sitting at a campfire..");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            AcsiiArt.woodElfArt();
+            Console.WriteLine("\nYou contemplate helping the creature.."); 
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            Boolean validateWoodElfSelection = false; 
+            
+                while (!validateWoodElfSelection) {
+                Game.CharacterStats();
+                Random RandomDiceRoll = new Random();
+                int woodElfDiceRoll = RandomDiceRoll.Next(0, 150);
+                Console.WriteLine($"\nYou choose to..");
+                Console.WriteLine($"\nA. Bandage the Elf's wounds.");
+                Console.WriteLine($"\nB. Leave. This is none of your business.");
+                Console.WriteLine($"\nC. Kill the Elf. {Game.rollDice("B")}% chance.");
+                string woodElfChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (woodElfChoice == "A") {
+                        Console.WriteLine("/nYou walk up to the creature, you notice it's markings to be from the forest.. a Wood Elf.");
+                        Thread.Sleep(3000);
+                            switch (Game.CharacterRaceStore.characterRace) {
+                            case "Elf":
+                            Console.WriteLine("\nYou bandage the Elf's wounds whilst comparing its markings to your own, you feel somewhat connected to the Wood Elf.");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nYou assist the Wood Elf onto his feet. You have never seen a Wood Elf before, you sense he has never seen a Light Elf before either..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Game.YellowTextWriteLine($"\nWood Elf: Ni 'lassui En"); 
+                            Console.WriteLine("\nThe Wood Elf say's he owes you in his native tongue and transfers some of his life essence to you. You feel as though your paths will cross again some day..");
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            Game.GreenTextWriteLine("+ 1 Str");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            ++Game.CharacterRaceStore.characterStr;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Human":
+                            Console.WriteLine("\nYou bandage the Elf's wounds. The Wood Elf is silent, unable to speak from it's wounds.");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nYou assist the Wood Elf onto his feet..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Game.YellowTextWriteLine($"\nWood Elf: Ni 'lassui En"); 
+                            Console.WriteLine("\nThe Wood Elf bids you thanks and shares some of their food with you.");
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Dwarf":
+                            Console.WriteLine("\nYou bandage the Elf's wounds. The Wood Elf is silent, unable to speak from it's wounds.");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nYou assist the Wood Elf onto his feet..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Game.YellowTextWriteLine($"\nWood Elf: Ni 'lassui En"); 
+                            Console.WriteLine("\nThe Wood Elf bids you thanks and shares some of their food with you.");
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            }
+                        validateWoodElfSelection = true;
+                } else if (woodElfChoice == "B") {
+                        Console.WriteLine("\nYou decide that it's best to stay away from the creature, after all, you don't know what it's capable of.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateWoodElfSelection = true;
+                } else if (woodElfChoice == "C") {
+                        if (woodElfDiceRoll < Game.rollDice("B")) {
+                            Console.WriteLine("\nYou kill the Elf while it's down and loot his items and food.");
+                            Console.WriteLine("\n'It had to be done' you think to yourself, you need his items more than he does..");
+                            Thread.Sleep(3000);
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Game.GreenTextWriteLine("+ 1 Wit");
+                            ++Game.CharacterRaceStore.characterWit;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validateWoodElfSelection = true;
+                        } else {
+                            Console.WriteLine("\nYou attempt to kill the Elf");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Elf notices your action.. It quickly draw's his bow and fires an arrow at you.");
+                            Game.YellowTextWriteLine($"\nElf: lamanwa!"); 
+                            Thread.Sleep(3000);
+                            Game.RedTextWriteLine("- 1 HP");
+                            --Game.CharacterRaceStore.characterStr;
+                            Game.RedTextWriteLine("- 1 Wit");
+                            --Game.CharacterRaceStore.characterWit;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nYou tear out the arrow and kill the Elf with one powerful blow.");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validateWoodElfSelection = true;
+                        }
+                } else {
+                        Console.WriteLine("You must pick A, B or C...");
+                        validateWoodElfSelection = false;
                     }
                 }
         }
@@ -850,6 +965,20 @@ namespace Adventure
             Game.DarkBlueTextWriteLine(@"     _ .'  _.-`");
             Game.DarkBlueTextWriteLine(@"  _.` `.-;`/");
         }
+
+        public static void woodElfArt() {
+             Game.GreenTextWriteLine(@"           (               |\,---/|");
+             Game.GreenTextWriteLine(@"            )              \ -,- |!");
+             Game.GreenTextWriteLine(@"           (  (             \ =__/");
+             Game.GreenTextWriteLine(@"               )             ,'-'.");
+             Game.GreenTextWriteLine(@"         (    (  ,,      _.__|/ /|");
+             Game.GreenTextWriteLine(@"          ) /\ -((      ((_|___/ |");
+             Game.GreenTextWriteLine(@"        (  // | (`'      ((  `'--|");
+             Game.GreenTextWriteLine(@"      _ -.;_/ \\--._      \\ \-._/.");
+             Game.GreenTextWriteLine(@"     (_;-// | \ \-'.\    <_,\_\`--'|");
+             Game.GreenTextWriteLine(@"     ( `.__ _  ___,')      <_,-'__,'");
+             Game.GreenTextWriteLine(@"      `'(_ )_)(_)_)'");
+        }
     } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -900,7 +1029,16 @@ namespace Adventure
 
            // Sixth decision
            Items.fairyChoice();
+
+           Console.WriteLine("\nYou continue through the forest.. the trees around you seem to be a lot more taller as you venture through.."); 
+           Thread.Sleep(3000);
            
+           // Seventh decision
+           Items.woodElfChoice();
+
+           Console.WriteLine("\nYou vacate the area where the Wood Elf resided and continue on your path.."); 
+           Thread.Sleep(3000);
+
            // Stops program from closing straight away
            Console.ReadLine();
         }
