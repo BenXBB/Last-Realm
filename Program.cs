@@ -488,6 +488,124 @@ namespace Adventure
                 }
             Thread.Sleep(5000);
         }
+
+        // --------------------------- 5. Dwarf Chest -------------------------------
+        public static void dwarfChest() {
+            Console.WriteLine("\nYou arrive in the plains of Vanaheim.. the air and land is rich with minerals.. you come across a small hut and see a Dwarf scrambling looking for something round the back."); 
+            Thread.Sleep(5000);
+            AcsiiArt.plainsHouseArt();
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            Console.WriteLine("\nThe Dwarf notices you as you approach.."); 
+            Thread.Sleep(3000);
+            Game.YellowTextWriteLine("\nAy there, you ain't seen a chest near this house by any chance have ye?!"); 
+            Console.WriteLine("\nYou remember passing an object that looked as though its been quickly buried near the treeline...");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            Boolean validatePotSelection = false; 
+            
+                while (!validatePotSelection) {
+                Game.CharacterStats();
+                Random RandomDiceRoll = new Random();
+                int potDiceRoll = RandomDiceRoll.Next(0, 100);
+                Console.WriteLine($"\nYou choose to..");
+                Console.WriteLine($"\nA. Point the Dwarf to the object.");
+                Console.WriteLine($"\nB. Stay quiet and continue on your journey");
+                Console.WriteLine($"\nC. Lie and keep the chest to yourself. {Game.rollDice("C")}% chance.");
+                string potChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (potChoice == "A") {
+                        Console.WriteLine("/nYou point the Dwarf to the chest he was looking for..");
+                        Thread.Sleep(3000);
+                            switch (Game.CharacterRaceStore.characterRace) {
+                            case "Elf":
+                            Game.YellowTextWriteLine("\nDwarf: Well damn, I thought for sure being an Elf you'd lie, thank ye!"); 
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Dwarf mutters to himself about how his kind deserved land over some stinking Elves, however..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Console.WriteLine("\nThe Dwarf gives you a Health potion from the chest..");
+                            Game.GreenTextWriteLine("+ 1 HP\n");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Human":
+                            Game.YellowTextWriteLine("\nDwarf: Ahhh and here I thought a Human would backstab me, thank ye!"); 
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Dwarf mutters to himself about how stupidly tall you are for a Human, however..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Console.WriteLine("\nThe Dwarf gives you a Health potion from the chest..");
+                            Game.GreenTextWriteLine("+ 1 HP\n");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Dwarf":
+                            Game.YellowTextWriteLine("\nDwarf: Ahh thank ye fellow Dwarf. You can only trust your own kind around here, ay?!"); 
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Dwarf mutters to himself about how much you look like his older deceased brother..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Console.WriteLine("\nYou rest with your fellow Dwarf and share a few ales together.. you leave the next morning feeling refreshed.");
+                            Console.WriteLine("\nThe Dwarf gives you a Health potion from his chest and a pat on the back..");
+                            Game.GreenTextWriteLine("+ 1 HP\n");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Game.GreenTextWriteLine("+ 1 Str\n");
+                            ++Game.CharacterRaceStore.characterStr;
+                            Game.YellowTextWriteLine($"\nDwarf: Good luck on your journey {Game.CharacterNameStore}, maybe our paths will cross again.."); 
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            }
+                        validatePotSelection = true;
+                } else if (potChoice == "B") {
+                        Console.WriteLine("\nYou decide that you do not have time for the Dwarf and continue on your journey..");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validatePotSelection = true;
+                } else if (potChoice == "C") {
+                        if (potDiceRoll < Game.rollDice("C")) {
+                            Console.WriteLine("\nYou lie to the Dwarf about the whereabouts of the chest and you later return to dig up the chest and keep the loot to yourself..");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nInside are various potions which you soon store in your inventory..");
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Game.GreenTextWriteLine("+ 1 Str");
+                            ++Game.CharacterRaceStore.characterStr;
+                            Game.GreenTextWriteLine("+ 1 Wit");
+                            ++Game.CharacterRaceStore.characterWit;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validatePotSelection = true;
+                        } else {
+                            Console.WriteLine("\nYou attempt to lie to the Dwarf..");
+                            Thread.Sleep(3000);
+                            Game.YellowTextWriteLine($"\nDwarf: You must think I'm dumb! I've seen your stealing eyes looking at my loot!"); 
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Dwarf attacks you but you're able to kill him in one stab to the chest..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            Console.WriteLine("\nYour ponder your choice as you loot the Dwarf's body for a Health potion..");
+                            Game.GreenTextWriteLine("+ 1 HP\n");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Game.RedTextWriteLine("\n- 1 Wit");
+                            --Game.CharacterRaceStore.characterWit;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validatePotSelection = true;
+                        }
+                } else {
+                        Console.WriteLine("You must pick A, B or C...");
+                        validatePotSelection = false;
+                    }
+                }
+        }
+
     } // end of Items class
 
     public static class AcsiiArt
@@ -586,6 +704,24 @@ namespace Adventure
             Game.RedTextWriteLine(@"     ()     |  )=(  |  ");
             Game.RedTextWriteLine(@"     {}    | _/\=/\_ |  ");
         }
+
+        public static void plainsHouseArt() {
+            Game.GreenTextWriteLine(@"////\\\\///\\\\\ ///\\\//\//\\//\\\ /\///\\//\\ ///\\\/////\\///\\\  /\\");
+            Game.GreenTextWriteLine(@"////\\\\\//\\\\\////\\\\////\\\/\\\//\\//\///\\\///\\\\// /\ ///\\\\//\\");
+            Game.GreenTextWriteLine(@"////\\\\   \\\\/////\\\\////\\\\\\///\\\/////\\\\//\\\\\ /\\\ //\\\///\\");
+            Game.GreenTextWriteLine(@"////\\\  O> \\\/////\\\/////\\\\\////\\\\////\\\\\/\\\\ /\\\\\ /\\////\\");
+            Game.GreenTextWriteLine(@"////   _,/)_  \/ __ \\\/////\\\\/////\\\\\///\\\\\/\\\ /UU\\\\\ \/////\\");
+            Game.GreenTextWriteLine(@" ,--==|__<__|===/ / \\//////\\\\/////\\\\\///\\\\\\\\ /UUUU\\\\\ /////\\");
+            Game.GreenTextWriteLine(@"   ||  `.``    '-' || //////\\\//////\\\\\\//\\\\\\| /UUUUUU\\\/|/////\\");
+            Game.GreenTextWriteLine(@"   ||    `._       ||      ||  //////\\\\\\ ||    ||/UUUUUUUU\/ |    ||");
+            Game.GreenTextWriteLine(@"            `--.__         ||       ||      ||      |,--. __ |/||    ||");
+            Game.GreenTextWriteLine(@"_____             ``--..__          ||              ||__|| /|||/|       ");
+            Game.GreenTextWriteLine(@"     ``--.._              ```---...___         _    | _  || || /   _");
+            Game.GreenTextWriteLine(@"  ~         `-.                       ````----((=   |(:)_|| ||/  _( )");
+            Game.GreenTextWriteLine(@"      ~~ ~     \                                __      / |/|   (    )");
+            Game.GreenTextWriteLine(@"    ~  ><> ~    \  '                '          (  )   ,'    ;  (,__)_)");
+            Game.GreenTextWriteLine(@"~     ~~~~       |           '            '   |_ | ),'       '        '");
+        }
     } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -627,6 +763,9 @@ namespace Adventure
            Console.WriteLine("\nYou make your way out of the decrepit catacombs. You feel as though you can finally breathe when you exit into plains."); 
            Thread.Sleep(3000);
            Console.WriteLine("\nYou look into the distance and see the portal's silhouette.. your end goal. You contine you on your path."); 
+
+           // Fifth decision
+           Items.dwarfChest();
            
            // Stops program from closing straight away
            Console.ReadLine();
