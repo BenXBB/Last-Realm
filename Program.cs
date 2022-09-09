@@ -917,6 +917,101 @@ namespace Adventure
                 }
         }
 
+            // --------------------------- 9. Raven Choice -------------------------------
+        public static void ravenChoice() {
+            Thread.Sleep(5000);
+            Console.WriteLine("\nYou continue up the branch of the Realm tree towards the portal.. A Raven swoops by you, narrowly missing your face.."); 
+            Thread.Sleep(5000);
+            Console.WriteLine("\nSoon, another Raven flies by you.. and another one.. until you are swarmed by a murder of Ravens.");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            Console.WriteLine("\nYou stand your ground as the Ravens seem to all come together and morph into a humanoid figure..");
+            Console.WriteLine("\nYou recongise the figure to be the All-Father, Odin. He stands tall in front of you, with one glowing eye.");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            AcsiiArt.odinArt();
+            Game.YellowTextWriteLine($"Turn back, {Game.CharacterNameStore}.. this battle between the Aesir and Vanir does not concern you."); 
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            Boolean validateRavenSelection = false; 
+            
+                while (!validateRavenSelection) {
+                Game.CharacterStats();
+                Console.WriteLine($"\nYou choose to..");
+                Console.WriteLine($"\nA. Silently draw your weapon..");
+                Console.WriteLine($"\nB. Shout obscenities at him..");
+                Console.WriteLine($"\nC. Retire - You cannot fight a god..");
+                string odinChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (odinChoice == "A") {
+                        Console.WriteLine("/nYou draw your weapon.. ready for battle with a god..");
+                        Thread.Sleep(3000);
+                        Console.WriteLine("/nOdin watches you in contemptment and chuckles to himself as he wields 'Gungnir'.. his spear.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nAs you prepare to make your strike you hear someone or something shout from the distance.. you look in the direction of the sound and see someone approaching.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        AcsiiArt.freyaArt();
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nIt's Freya! The leader of the Vanir & the one that sent you on this journey.");
+                        Game.YellowTextWriteLine($"Freya: {Game.CharacterNameStore}! You must make it to the portal and destroy it, I will deal with Odin!"); 
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nOdin attempts to strike you with his spear, but Freya was able to parry the blow.");
+                        Console.WriteLine("/nYou continue past the two who were once husband and wife.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateRavenSelection = true;
+                } else if (odinChoice == "B") {
+                        Console.WriteLine("/nYou hurl insults at the god, hoping to get him to back down.");
+                        Thread.Sleep(3000);
+                        Console.WriteLine("/nOdin watches you in contemptment and chuckles to himself as he wields 'Gungnir'.. his spear.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nYour plan doesnt seem to be working.. however you hear someone shouting.. you look in the direction of the sound and see someone approaching..");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        AcsiiArt.freyaArt();
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nIt's Freya! The leader of the Vanir & the one that sent you on this journey.");
+                        Game.YellowTextWriteLine($"Freya: {Game.CharacterNameStore}! You must make it to the portal and destroy it, I will deal with Odin!"); 
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nOdin attempts to strike you with his spear, but Freya was able to parry the blow.");
+                        Console.WriteLine("/nYou continue past the two who were once husband and wife.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateRavenSelection = true;
+                } else if (odinChoice == "C") {
+                        Console.WriteLine("\nYou realise you cannot fight a god and start to retreat..");
+                        Console.WriteLine("/nOdin watches you with his arms folded..");
+                        Game.YellowTextWriteLine($"Wise choice {Game.CharacterNameStore}.."); 
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nAs you prepare to make your retreat, you hear someone or something shout from the distance.. you look in the direction of the sound and see someone approaching.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        AcsiiArt.freyaArt();
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nIt's Freya! The leader of the Vanir & the one that sent you on this journey.");
+                        Game.YellowTextWriteLine($"Freya: {Game.CharacterNameStore}! You must make it to the portal and destroy it, I will deal with Odin!"); 
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nOdin attempts to strike you with his spear, but Freya was able to parry the blow.");
+                        Console.WriteLine("/nYou continue past the two who were once husband and wife.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateRavenSelection = true;
+                } else {
+                        Console.WriteLine("You must pick A, B or C...");
+                        validateRavenSelection = false;
+                    }
+                }
+        }
+
     } // end of Items class
 
     public static class AcsiiArt
@@ -1083,6 +1178,44 @@ namespace Adventure
             Game.RedTextWriteLine(@"             /");
             Game.RedTextWriteLine(@"           ,'");
         }
+
+        public static void odinArt() {
+            Game.DarkBlueTextWriteLine(@"      __      _");
+            Game.DarkBlueTextWriteLine(@"     /__\__  //");
+            Game.DarkBlueTextWriteLine(@"    //_____\///");
+            Game.DarkBlueTextWriteLine(@"   _| /-_-\)|/_");
+            Game.DarkBlueTextWriteLine(@"  (___\ _ //___\");
+            Game.DarkBlueTextWriteLine(@"  (  |\\_/// * \\");
+            Game.DarkBlueTextWriteLine(@"   \_| \_((*   *))");
+            Game.DarkBlueTextWriteLine(@"   ( |__|_\\  *//");
+            Game.DarkBlueTextWriteLine(@"   (o/  _  \_*_/");
+            Game.DarkBlueTextWriteLine(@"   //\__|__/\");
+            Game.DarkBlueTextWriteLine(@"  // |  | |  |");
+            Game.DarkBlueTextWriteLine(@" //  _\ | |___)");
+            Game.DarkBlueTextWriteLine(@"//  (___|");
+        }
+
+        public static void freyaArt() {
+            Game.GreenTextWriteLine(@"   //.---.    .-'.");
+            Game.GreenTextWriteLine(@"( (-/==^==.  /    ) ))");
+            Game.GreenTextWriteLine(@"  /|))è é()./   .'");
+            Game.GreenTextWriteLine(@" ('-((\_/( ))..' /");
+            Game.GreenTextWriteLine(@"  \ '-;_.-. ) ))");
+            Game.GreenTextWriteLine(@"   '-(_ _)_\ ) )).'");
+            Game.GreenTextWriteLine(@"    / ) (/_ ) \");
+            Game.GreenTextWriteLine(@"(( ( /\_/\,/|  ) ))");
+            Game.GreenTextWriteLine(@"    /  .  '.'.' ");
+            Game.GreenTextWriteLine(@"   (  .\  . '.___.");
+            Game.GreenTextWriteLine(@"    \_| \  '.___/");
+            Game.GreenTextWriteLine(@"     \'._;.___) ");
+            Game.GreenTextWriteLine(@"      \_|-.\ |   ");
+            Game.GreenTextWriteLine(@"       '--,-\'.");
+            Game.GreenTextWriteLine(@"          |/ \ )");
+            Game.GreenTextWriteLine(@"        ._/   \|_");
+            Game.GreenTextWriteLine(@"               \ )");
+            Game.GreenTextWriteLine(@"                \|");
+            Game.GreenTextWriteLine(@"               ._)");
+        }
     } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -1150,7 +1283,7 @@ namespace Adventure
            Thread.Sleep(3000);
 
            // Ninth decision
-           
+           Items.ravenChoice();
 
            // Stops program from closing straight away
            Console.ReadLine();
