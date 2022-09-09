@@ -29,8 +29,10 @@ namespace Adventure
         public static String CharacterNameStore = "";
         public static Race CharacterRaceStore = new Race("Human", 4, 3, 3);
         public static void CharacterStats() {
-            DarkBlueTextWriteLine($"\n{Game.CharacterRaceStore.characterRace} {Game.CharacterNameStore}:     HP: {Game.CharacterRaceStore.characterHealth}     STR: {Game.CharacterRaceStore.characterStr}     WIT: {Game.CharacterRaceStore.characterWit}");
+            CyanTextWriteLine($"\n{Game.CharacterRaceStore.characterRace} {Game.CharacterNameStore}:     HP: {Game.CharacterRaceStore.characterHealth}     STR: {Game.CharacterRaceStore.characterStr}     WIT: {Game.CharacterRaceStore.characterWit}");
         }
+
+        public static Boolean Karma = false;
 
         public static void validateGameOver() {
             if (Game.CharacterRaceStore.characterHealth < 1) {
@@ -431,7 +433,7 @@ namespace Adventure
             Console.WriteLine("\nPress 'Enter' to continue..");
             Console.ReadLine();
             AcsiiArt.draugrArt();
-            Console.WriteLine("\nIt's a Draugr! This event is chance based on your skills, choose wisely..");
+            Console.WriteLine("\nIt's a Draugr! This event is chance based on your skills..");
             
             Boolean validateDraugrSelection = false; 
             
@@ -517,7 +519,7 @@ namespace Adventure
                 Thread.Sleep(3000);
 
                 if (potChoice == "A") {
-                        Console.WriteLine("/nYou point the Dwarf to the chest he was looking for..");
+                        Console.WriteLine("\nYou point the Dwarf to the chest he was looking for..");
                         Thread.Sleep(3000);
                             switch (Game.CharacterRaceStore.characterRace) {
                             case "Elf":
@@ -557,6 +559,7 @@ namespace Adventure
                             Game.GreenTextWriteLine("+ 1 Str\n");
                             ++Game.CharacterRaceStore.characterStr;
                             Game.YellowTextWriteLine($"\nDwarf: Good luck on your journey {Game.CharacterNameStore}, maybe our paths will cross again.."); 
+                            Game.Karma = true;
                             Console.WriteLine("\nPress 'Enter' to continue..");
                             Console.ReadLine();
                             break;
@@ -634,7 +637,7 @@ namespace Adventure
                 Thread.Sleep(3000);
 
                 if (fairyChoice == "A") {
-                        Console.WriteLine("/nYou run to aid the creature..");
+                        Console.WriteLine("\nYou run to aid the creature..");
                         Thread.Sleep(3000);
                             switch (Game.CharacterRaceStore.characterRace) {
                             case "Elf":
@@ -658,6 +661,7 @@ namespace Adventure
                             Game.GreenTextWriteLine("+ 1 Str");
                             ++Game.CharacterRaceStore.characterHealth;
                             ++Game.CharacterRaceStore.characterStr;
+                            Game.Karma = true;
                             Console.WriteLine("\nPress 'Enter' to continue..");
                             Console.ReadLine();
                             break;
@@ -742,7 +746,7 @@ namespace Adventure
                 Thread.Sleep(3000);
 
                 if (woodElfChoice == "A") {
-                        Console.WriteLine("/nYou walk up to the creature, you notice it's markings to be from the forest.. a Wood Elf.");
+                        Console.WriteLine("\nYou walk up to the creature, you notice it's markings to be from the forest.. a Wood Elf.");
                         Thread.Sleep(3000);
                             switch (Game.CharacterRaceStore.characterRace) {
                             case "Elf":
@@ -755,6 +759,7 @@ namespace Adventure
                             Console.WriteLine("\nThe Wood Elf say's he owes you in his native tongue and transfers some of his life essence to you. You feel as though your paths will cross again some day..");
                             Game.GreenTextWriteLine("+ 1 HP");
                             Game.GreenTextWriteLine("+ 1 Str");
+                            Game.Karma = true;
                             ++Game.CharacterRaceStore.characterHealth;
                             ++Game.CharacterRaceStore.characterStr;
                             Console.WriteLine("\nPress 'Enter' to continue..");
@@ -858,7 +863,7 @@ namespace Adventure
                 Thread.Sleep(3000);
 
                 if (mountainWolfChoice == "A") {
-                        Console.WriteLine("/nYou leave the cave - the Vanaheim mountain wolves are a huge threat, and there may of been more of them in the cave!");
+                        Console.WriteLine("\nYou leave the cave - the Vanaheim mountain wolves are a huge threat, and there may of been more of them in the cave!");
                         Thread.Sleep(3000);
                         validateWolfSelection = true;
                 } else if (mountainWolfChoice == "B") {
@@ -946,9 +951,9 @@ namespace Adventure
                 Thread.Sleep(3000);
 
                 if (odinChoice == "A") {
-                        Console.WriteLine("/nYou draw your weapon.. ready for battle with a god..");
+                        Console.WriteLine("\nYou draw your weapon.. ready for battle with a god..");
                         Thread.Sleep(3000);
-                        Console.WriteLine("/nOdin watches you in contemptment and chuckles to himself as he wields 'Gungnir'.. his spear.");
+                        Console.WriteLine("\nOdin watches you in contemptment and chuckles to himself as he wields 'Gungnir'.. his spear.");
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         Console.WriteLine("\nAs you prepare to make your strike you hear someone or something shout from the distance.. you look in the direction of the sound and see someone approaching.");
@@ -961,14 +966,14 @@ namespace Adventure
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         Console.WriteLine("\nOdin attempts to strike you with his spear, but Freya was able to parry the blow.");
-                        Console.WriteLine("/nYou continue past the two who were once husband and wife.");
+                        Console.WriteLine("\nYou continue past the two who were once husband and wife.");
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         validateRavenSelection = true;
                 } else if (odinChoice == "B") {
-                        Console.WriteLine("/nYou hurl insults at the god, hoping to get him to back down.");
+                        Console.WriteLine("\nYou hurl insults at the god, hoping to get him to back down.");
                         Thread.Sleep(3000);
-                        Console.WriteLine("/nOdin watches you in contemptment and chuckles to himself as he wields 'Gungnir'.. his spear.");
+                        Console.WriteLine("\nOdin watches you in contemptment and chuckles to himself as he wields 'Gungnir'.. his spear.");
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         Console.WriteLine("\nYour plan doesnt seem to be working.. however you hear someone shouting.. you look in the direction of the sound and see someone approaching..");
@@ -981,13 +986,13 @@ namespace Adventure
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         Console.WriteLine("\nOdin attempts to strike you with his spear, but Freya was able to parry the blow.");
-                        Console.WriteLine("/nYou continue past the two who were once husband and wife.");
+                        Console.WriteLine("\nYou continue past the two who were once husband and wife.");
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         validateRavenSelection = true;
                 } else if (odinChoice == "C") {
                         Console.WriteLine("\nYou realise you cannot fight a god and start to retreat..");
-                        Console.WriteLine("/nOdin watches you with his arms folded..");
+                        Console.WriteLine("\nOdin watches you with his arms folded..");
                         Game.YellowTextWriteLine($"Wise choice {Game.CharacterNameStore}.."); 
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
@@ -1001,7 +1006,7 @@ namespace Adventure
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         Console.WriteLine("\nOdin attempts to strike you with his spear, but Freya was able to parry the blow.");
-                        Console.WriteLine("/nYou continue past the two who were once husband and wife.");
+                        Console.WriteLine("\nYou continue past the two who were once husband and wife.");
                         Console.WriteLine("\nPress 'Enter' to continue..");
                         Console.ReadLine();
                         validateRavenSelection = true;
@@ -1012,10 +1017,206 @@ namespace Adventure
                 }
         }
 
+                
+        // --------------------------- 10. End Choice -------------------------------
+        public static void endChoice() {
+            Thread.Sleep(5000);
+            Console.WriteLine("\nYou come face to face with the portal.. the one thing that is waging war between the realm of Aesir and the Vanir.. The sky is completely black.."); 
+            Thread.Sleep(5000);
+            Console.WriteLine("\nYou ready yourself to topple down the steep contraption..");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            Console.WriteLine("\nBefore you can destroy the portal, something emerges from it.. you ready yourself for your final battle..");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            AcsiiArt.endBattleArt();
+            Console.WriteLine("\nA warrior like yourself comes from the portal, you both know you are destined to fight one another, both picked as a champion by Odin & Freya.");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            Boolean validateEndChoiceSelection = false; 
+            
+                while (!validateEndChoiceSelection) {
+                Game.CharacterStats();
+                Console.WriteLine($"\nYour action..");
+                Console.WriteLine($"\nA. Fight.");
+                Console.WriteLine($"\nB. Reason. 15% chance");
+                string endFightChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (endFightChoice == "A") {
+                        Console.WriteLine("\nYou draw your weapon.. ready to fight what seems to be your nemesis..");
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nYou battle for what seems for hours and you are both tired.. the final stage of the battle commences..");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateEndChoiceSelection = true;
+                } else if (endFightChoice == "B") {
+                        Console.WriteLine("\nYou attempt to reason with the warrior..");
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nIt is no use.. you are both destined to fight each other..");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        validateEndChoiceSelection = true;
+                } else {
+                        Console.WriteLine("You must pick A or B...");
+                        validateEndChoiceSelection = false;
+                    }
+                }
+
+            Boolean validateEndFightSelection = false; 
+            int VegvisirChance = 1;
+                while (!validateEndFightSelection) {
+                Game.CharacterStats();
+                Console.WriteLine($"\nYour action..");
+                Console.WriteLine($"\nA. Attack.");
+                Console.WriteLine($"\nB. Block.");
+                string endGameChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (endGameChoice == "A") {
+                        Console.WriteLine("\nYou attack the warrior..");
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nYour swords clash and you both strike each other at the same time.");
+                        Game.RedTextWriteLine("- 3 Str");
+                        --Game.CharacterRaceStore.characterStr;
+                        --Game.CharacterRaceStore.characterStr;
+                        --Game.CharacterRaceStore.characterStr;
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        if (Game.CharacterRaceStore.characterStr < 1 && VegvisirChance == 1) {
+                            Console.WriteLine("\nYou are out of strength.. however you use the Vegvisir pendant that Mimir gave you at the start of your journey to re-energise yourself.");
+                            VegvisirChance = 0;
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            Game.GreenTextWriteLine("+ 1 Str");
+                            ++Game.CharacterRaceStore.characterHealth;
+                            Game.CharacterRaceStore.characterStr = 1;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                        } else if (Game.CharacterRaceStore.characterStr < 1) {
+                            validateEndFightSelection = true;
+                        }
+                } else if (endGameChoice == "B") {
+                        Console.WriteLine("\nYou defend yourself..");
+                        Thread.Sleep(3000);
+                        Console.WriteLine("\nYou block most of the blow from the warrior..");
+                        Game.RedTextWriteLine("- 3 HP");
+                        --Game.CharacterRaceStore.characterHealth;
+                        --Game.CharacterRaceStore.characterHealth;
+                        --Game.CharacterRaceStore.characterHealth;
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        if (Game.CharacterRaceStore.characterHealth < 1 && VegvisirChance == 1) {
+                            Console.WriteLine("\nYou are out of HP.. however you use the Vegvisir pendant that Mimir gave you at the start of your journey to re-energise yourself and carry on fighting.");
+                            VegvisirChance = 0;
+                            Game.GreenTextWriteLine("+ 1 HP");
+                            Game.GreenTextWriteLine("+ 1 Str");
+                            Game.CharacterRaceStore.characterHealth = 1;
+                            ++Game.CharacterRaceStore.characterStr;
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                        } else if (Game.CharacterRaceStore.characterHealth < 1) {
+                            validateEndFightSelection = true;
+                        }
+                } else {
+                        Console.WriteLine("You must pick A or B...");
+                        validateEndFightSelection = false;
+                    }
+                }
+
+            Console.WriteLine("\nYou are out of energy.. you fall to your knees and look up at the warrior, visibly tired from the fight too.");
+            Console.WriteLine("\nThe warrior raises his weapon for the final blow, you replay your life, especially your journey through your mind.. 'was it worth it?'");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            if (Game.Karma == true) {
+                switch (Game.CharacterRaceStore.characterRace) {
+                            case "Elf":
+                            Console.WriteLine("\nJust as you think this is it for you, the Wood Elf you helped before arrives just in time!");
+                            Thread.Sleep(3000);
+                            Game.YellowTextWriteLine("\nElf: 'auta-lenna!");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            AcsiiArt.endBattleElf();
+                            Console.WriteLine("\nThe Wood Elf fires an arrow that deflects the blow of the Warrior.");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Warrior makes a hasty retreat back through the portal..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Human":
+                            Console.WriteLine("\nJust as you think this is it for you, the Fairies you helped before arrive just in time!");
+                            Thread.Sleep(3000);
+                            Game.YellowTextWriteLine("\nFairy: 'Allo-Lustra!");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            AcsiiArt.fairyArt();
+                            Console.WriteLine("\nThe Fairies use a spell on you to allow you to quickly regain your strength and parry the blow from the Warrior!");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Warrior makes a hasty retreat back through the portal..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            case "Dwarf":
+                            Console.WriteLine("\nJust as you think this is it for you, the Dwarf you helped before arrives just in time!");
+                            Thread.Sleep(3000);
+                            Game.YellowTextWriteLine("\nDwarf: 'Not on my watch ye vermin!");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            AcsiiArt.endBattleDwarf();
+                            Console.WriteLine("\nThe Dwarf jumps in to parry the strike of the warrior.");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Warrior makes a hasty retreat back through the portal..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            break;
+                            }
+                } else if (Game.Karma == false) {
+                    Console.WriteLine("\nJust as you think this is it for you, Mimir comes just in time!");
+                    Thread.Sleep(3000);
+                    Game.YellowTextWriteLine("\nMimir: 'Hold on!");
+                    Console.WriteLine("\nPress 'Enter' to continue..");
+                    Console.ReadLine();
+                    AcsiiArt.mimirArt();
+                    Console.WriteLine("\nMimir blesses your body, allowing you enough strength to parry the attack!");
+                    Thread.Sleep(3000);
+                    Console.WriteLine("\nThe Warrior makes a hasty retreat back through the portal..");
+                    Console.WriteLine("\nPress 'Enter' to continue..");
+                    Console.ReadLine();
+                }
+
+        Console.WriteLine("\nYour ally helps you to your feet..");
+        Console.WriteLine("\nYou both take a look at the portal.. You know what to do...");
+        Console.WriteLine("\nPress 'Enter' to continue..");
+        Console.ReadLine();
+        AcsiiArt.portal();
+        Console.WriteLine("\nThe portal is bigger than you expected.. Press 'Enter' to continue..");
+        Console.ReadLine();
+        }
+
+        // --------------------------- 11. Epilogue -------------------------------
+        public static void epilogue() {
+           Console.WriteLine("\nYou tear down the portal.. a great big flash of light stuns you as the portal closes and the sky turns back to blue.."); 
+           Thread.Sleep(3000);  
+           Console.WriteLine("\nPeace has once again returned back to the realm"); 
+           Console.WriteLine("\nPress 'Enter' to continue..");
+           Console.ReadLine();
+           Console.WriteLine("\nFreya returns from her battle.. visibly beaten"); 
+           Game.YellowTextWriteLine($"\nThank you {Game.CharacterNameStore}.. if not for you we would of never brought peace to this Realm.. you have my thanks..");
+           AcsiiArt.celebration();
+           Console.WriteLine("\nPress 'Enter' to continue..");
+           Console.ReadLine();
+           AcsiiArt.endCinematic();
+           Console.WriteLine("\nPress 'Enter' to continue..");
+           Console.ReadLine();
+           System.Environment.Exit(0);
+        }
+
     } // end of Items class
 
     public static class AcsiiArt
     {
+        
         public static void raceArt() {
             Console.WriteLine(@"        ..-.--..    .       ) ( )) )( (( )    .  |/|    \_/   ;;|\  ");
             Console.WriteLine(@"   ,','.-`.-.`.     .   ( (((   )  (  )  ) )  .  | ____       ___ | ");
@@ -1023,7 +1224,7 @@ namespace Adventure
             Console.WriteLine(@"  ||//----,-.--\|   . (  )) )  ____   ____ )  .  |        |       | ");
             Console.WriteLine(@"\`:|/-----`-'--||'/ .  ) ( ) `|<();|-|,()>|   . '|    /-.__.-\    | ");
             Console.WriteLine(@" \\|:    |:'     /  . ( ))(    `--'  \`--'    .  |     |   |     \| ");
-            Console.WriteLine(@"  `||      \   |!   . )( ( )       (- )   )   . ~| |  /V""""V\      | ");
+            Console.WriteLine(@"  `||      \   |!   . )( ( )       (- )   )   . ~| |   /V""""V\     | ");
             Console.WriteLine(@"  |!|          ;|   .   ))        _____  /    .   \|  ~`^~~^'|   /  ");
             Console.WriteLine(@"  !||:.   --  /|!   .     )   `     --  /     .     \\._____./ /    ");
             Console.WriteLine(@" /||!||:.___.|!||\  .      _ ,  `   __,       .       |   |         ");
@@ -1216,6 +1417,160 @@ namespace Adventure
             Game.GreenTextWriteLine(@"                \|");
             Game.GreenTextWriteLine(@"               ._)");
         }
+
+        public static void endBattleArt() {
+            Game.RedTextWriteLine(@"                 /|");
+            Game.RedTextWriteLine(@"  _______________)|.. ");
+            Game.RedTextWriteLine(@"<'______________<(,_|) ");
+            Game.RedTextWriteLine(@"           .((()))| ))");
+            Game.RedTextWriteLine(@"           (======)| \ ");
+            Game.RedTextWriteLine(@"          ((( ' '()|_ \");
+            Game.RedTextWriteLine(@"         '()))(_)/_/ ' )");
+            Game.RedTextWriteLine(@"         .--/_\ /(  /./");
+            Game.RedTextWriteLine(@"        /'._.--\ .-(_/ ");
+            Game.RedTextWriteLine(@"       / / )\___:___) ");
+            Game.RedTextWriteLine(@"      ( -.'.._  |  /");
+            Game.RedTextWriteLine(@"       \  \_\ ( | )");
+            Game.RedTextWriteLine(@"        '. /\)_(_)|");
+            Game.RedTextWriteLine(@"          '-|  XX |");
+            Game.RedTextWriteLine(@"           %%%%%%%%");
+            Game.RedTextWriteLine(@"          / %%%%%%%\");
+            Game.RedTextWriteLine(@"         ( /.-'%%%. \ ");
+            Game.RedTextWriteLine(@"        /(.'   %%\ :|");
+            Game.RedTextWriteLine(@"       / ,|    %  ) )");
+            Game.RedTextWriteLine(@"     _|___)   %  (__|_");
+            Game.RedTextWriteLine(@"     )___/       )___(");
+            Game.RedTextWriteLine(@"      |x/         \ >");
+            Game.RedTextWriteLine(@"      |x)         / '.");
+            Game.RedTextWriteLine(@"      |x\       _(____''.__");
+            Game.RedTextWriteLine(@"    --\ -\--");
+            Game.RedTextWriteLine(@"     --\__|--");
+        }
+
+        public static void endBattleElf() {
+            Game.GreenTextWriteLine(@"     __                                 /                  `|.");
+            Game.GreenTextWriteLine(@"      -\                              /                     |.");
+            Game.GreenTextWriteLine(@"        \\                          /                       |.");
+            Game.GreenTextWriteLine(@"          \\                      /                         |.");
+            Game.GreenTextWriteLine(@"           \|                   /                           |\");
+            Game.GreenTextWriteLine(@"             \#####\          /                             ||");
+            Game.GreenTextWriteLine(@"         ==###########>     /                               ||");
+            Game.GreenTextWriteLine(@"          \##==      \    /                                 ||");
+            Game.GreenTextWriteLine(@"     ______ =       =|__/___                                ||");
+            Game.GreenTextWriteLine(@" ,--' ,----`-,__ ___/'  --,-`-==============================##==========>");
+            Game.GreenTextWriteLine(@"\               '        ##_______ ______   ______,--,____,=##,__");
+            Game.GreenTextWriteLine(@" `,    __==    ___,-,__,--'#'  ==='      `-'              | ##,-/");
+            Game.GreenTextWriteLine(@"   `-,____,---'       \####\              |        ____,--\_##,/");
+            Game.GreenTextWriteLine(@"       #_              |##   \  _____,---==,__,---'         ##");
+            Game.GreenTextWriteLine(@"        #              ]===--==\                            ||");
+            Game.GreenTextWriteLine(@"        #,             ]         \                          ||");
+            Game.GreenTextWriteLine(@"         #_            |           \                        ||");
+            Game.GreenTextWriteLine(@"          ##_       __/'             \                      ||");
+            Game.GreenTextWriteLine(@"           ####='     |                \                    |/");
+            Game.GreenTextWriteLine(@"            ###       |                  \                  |.");
+        }
+
+        public static void endBattleDwarf() {
+            Game.GreenTextWriteLine(@"                        dMMm.");
+            Game.GreenTextWriteLine(@"                      dMMP'_\---.");
+            Game.GreenTextWriteLine(@"                      _| _  p ;88;`.");
+            Game.GreenTextWriteLine(@"                   ,db; p >  ;8P|  `.");
+            Game.GreenTextWriteLine(@"                   (``T8b,__,'dP |   |");
+            Game.GreenTextWriteLine(@"                   |   `Y8b..dP  ;_  |");
+            Game.GreenTextWriteLine(@"                   |    |`T88P_ /  `\;");
+            Game.GreenTextWriteLine(@"                   :_.-~|d8P'`Y/    /");
+            Game.GreenTextWriteLine(@"                    \_   TP    ;   7`\");
+            Game.GreenTextWriteLine(@"         ,,__        >   `._  /'  /   `\_");
+            Game.GreenTextWriteLine(@"         `._ """"~~~~------|`\;' ;     ,'");
+            Game.GreenTextWriteLine(@"            '''~~~-----~~~'\__[|;' _.-'  `\");
+            Game.GreenTextWriteLine(@"                   ;--..._     .-'-._     ;");
+            Game.GreenTextWriteLine(@"                   /      /`~~''   ,'`\_ ,/");
+            Game.GreenTextWriteLine(@"                  ;_    /'        /    ,/");
+            Game.GreenTextWriteLine(@"                  | `~-l         ;    /");
+        }
+
+        public static void portal() {
+            Game.CyanTextWriteLine(@"  `XXX' T               ~.                         \                 /                           .~             T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |                 ~.                        .               -                          .~               | ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX                   ~.                       \             /                         .~                 XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX                     ~.                      .6&&&&&&&&&A,                        .~                   XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T                       ~.             .6&&&&&&&&&&&&&&&&&&&&&&&A,               .~                     T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |._                       ~.     .6&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&A,       .~                     _.| ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX  ~-._                     ~.6&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&A,~                   _.-~  XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX      ~-._              6&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&A              _.-~      XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T          ~-._       6&&&&&&&&&&&&&&&&&&/'''''''''''''''''''''\&&&&&&&&&&&&&&&&&&A       _.-~          T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |              ~-._ 6&&&&&&&&&&&&&&&/                               \&&&&&&&&&&&&&&&A _.-~              | ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX                  &&&&&&&&&&&&&/                                       \&&&&&&&&&&&&&                  XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX                  &&&&&&&&&&/          ,              __._    _.'         \&&&&&&&&&&                  XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T                  && $                                    `-.'                   $ &&                  T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |~~..__            &&$         _.      .                                           $&&            __..~~| ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX      ~~..__      && $       ~                  _ -'- _                          $ &&      __..~~      XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX            ~~..__&&$     .-~             _ - '   .-.   ' - _        *            $&&__..~~            XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T                  && $                _~~   .    /7 t\  +     ~~_                $ &&                  T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |                  &&$                ._  -  _   /7   t\  .   _  _.         *'     $&&                  | ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX                  && $     *           '- , _  /7     t\  _ , -'                 $ &&                  XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX                  &&$                         | |     | |                         $&&                  XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T                  && $                        | |_   _| |                        $ &&                  T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |_________________.&&$  . .     . _ .  _    _.-| | /'\ | |-._     _    . ,  _  . . $&&._________________| ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX                  && $__________________.-~   |_|/___\|_|   ~-.__________________$ &&                  XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX                  &&$                  |'-._               _.-'|              ~~  $&&                  XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T                  && $          ~      |####'-._       _.-'####|    ~~_          $ &&                  T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |                  &&$   ~              |#   #.-~  .    ~-.#   #|                  $&&                  | ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX                  && $            ~~   |# .-~   __  _  .  ~-. #|                 $ &&                  XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX            __..~~&&$       ~~-        .-~  __       __  .   ~-.         ~        $&&~~..__            XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T      __..~~      && $              .-~  _     ___        __    ~-.              $ &&      ~~..__      T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX  |__..~~            &&$            .-~      ___         ___      __  ~-.      _~    $&&            ~~..__| ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX                  && $        .-~    ___        ___         ___       ~-.        $ &&                  XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX                  &&$    ~~.-~____        ____        ____        ____   ~-.      $&&                  XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T                  && $  .-~        ________         ________           ___  ~-.  $ &&                  T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |                _.&&$.-~                                                       ~-.$&&._                | ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXX            _.-~ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ~-._            XXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX        _.-~   _&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&_   ~-._        XXX. ,XXX");
+            Game.CyanTextWriteLine(@"  `XXX' T    _.-~     -'-------------------------------------------------------------------------`-     ~-._    T `XXX'");
+            Game.CyanTextWriteLine(@"  ,XXX. |_.-~       _&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&_       ~-._| ,XXX.");
+            Game.CyanTextWriteLine(@"XXX` 'XXXT        -'---------------------------------------------------------------------------------`-        TXXX` 'XXX");
+            Game.CyanTextWriteLine(@"XXX. ,XXX|      _&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&_      |XXX. ,XXX");
+            Game.CyanTextWriteLine(@"XXXXXXXXX!____-'-----------------------------------------------------------------------------------------`-____!XXXXXXXXX");
+            Game.CyanTextWriteLine(@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX               ");
+        }
+
+        public static void celebration() {
+            Game.GreenTextWriteLine(@"         .* *.               `o`o`");
+            Game.GreenTextWriteLine(@"         *. .*              o`o`o`o      ^,^,^");
+            Game.GreenTextWriteLine(@"           * \               `o`o`     ^,^,^,^,^");
+            Game.GreenTextWriteLine(@"              \     ***        |       ^,^,^,^,^");
+            Game.GreenTextWriteLine(@"               \   *****       |        /^,^,^");
+            Game.GreenTextWriteLine(@"                \   ***        |       /");
+            Game.GreenTextWriteLine(@"    ~@~*~@~      \   \         |      /");
+            Game.GreenTextWriteLine(@"  ~*~@~*~@~*~     \   \        |     /");
+            Game.GreenTextWriteLine(@"  ~*~@smd@~*~      \   \       |    /     #$#$#        .`'.;.");
+            Game.GreenTextWriteLine(@"  ~*~@~*~@~*~       \   \      |   /     #$#$#$#   00  .`,.',");
+            Game.GreenTextWriteLine(@"    ~@~*~@~ \        \   \     |  /      /#$#$#   /|||  `.,'");
+            Game.GreenTextWriteLine(@"_____________\________\___\____|_/______/_________|\/\___||______");
+        }
+
+        public static void endCinematic() {
+            Game.CyanTextWriteLine(@"You have completed              O");
+            Game.CyanTextWriteLine(@"             LAST-REALM      ,-.|____________________");
+            Game.CyanTextWriteLine(@"Thank you for playing     O==+-|(>-------- --  -     .>");
+            Game.CyanTextWriteLine(@"       This story has many   `- |'''''''d88b''''''''''");
+            Game.CyanTextWriteLine(@"different                     | O     d8P 88b");
+            Game.CyanTextWriteLine(@"        Endings...            |  \    88= ,=88");
+            Game.CyanTextWriteLine(@"See if you                    |   )   9b _. 88b");
+            Game.CyanTextWriteLine(@"find and complete them all    `._ `.   8`--'888");
+            Game.CyanTextWriteLine(@"                               \--'\   `-8___");
+            Game.CyanTextWriteLine(@"                                \`-.              \");
+            Game.CyanTextWriteLine(@"                                 `. \ -       _ / <");
+            Game.CyanTextWriteLine(@"                                  \ `---   ___/|_-\");
+            Game.CyanTextWriteLine(@"                                   |._      _. |_-|");
+            Game.CyanTextWriteLine(@"                                    \  _     _  /.-\");
+            Game.CyanTextWriteLine(@"                                     | -! . !- ||   |");
+            Game.CyanTextWriteLine(@"                                     \ '| ! |' /\   |");
+            Game.CyanTextWriteLine(@"                                      =oO)X(Oo=  \  /");
+            Game.CyanTextWriteLine(@"                                      888888888   < \");
+            Game.CyanTextWriteLine(@"                                     d888888888b  \_/       ");
+            Game.CyanTextWriteLine(@"                                     88888888888");
+        }
     } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -1285,8 +1640,15 @@ namespace Adventure
            // Ninth decision
            Items.ravenChoice();
 
-           // Stops program from closing straight away
-           Console.ReadLine();
+           Console.WriteLine("\nYou continue up the world tree's branch and close in to your final destination. Your quest is almost complete.."); 
+           Thread.Sleep(3000); 
+
+           // Tenth decision
+           Items.endChoice();
+
+           // Epilogue
+
+           Items.epilogue();
         }
     }
 }
