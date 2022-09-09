@@ -148,7 +148,7 @@ namespace Adventure
                     validateNameSelection = false;
                 } else { validateNameSelection = true; }
             }
-           Console.WriteLine($"{CharacterNameStore}, You have been chosen to to help defend the realm of Vanaheim from it's enemies.");
+           Console.WriteLine($"{CharacterNameStore}, You have been chosen to to help defend the realm of Vanaheim.");
         }
 
         public static void CharacterRace() {
@@ -828,6 +828,95 @@ namespace Adventure
                 }
         }
 
+        // --------------------------- 8. Wolf Choice -------------------------------
+        public static void wolfChoice() {
+            Console.WriteLine("\nYou find yourself hiking along the cold heights of a mountain to reach your destination.."); 
+            Thread.Sleep(5000);
+            Console.WriteLine("\nThe cold is unlike anything you've experienced before, occasionally rubbing your hands together in an attempt to stay warm.");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            Console.WriteLine("\nYou see a natural cave hidden in the mountain and decide to take shelter for a while and gather your strength.");
+            Console.WriteLine("\nYou sense something in the darkness of the cave..");
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            AcsiiArt.wolfArt();
+            Console.WriteLine("\nA mountain wolf edges slowly towards you."); 
+            Console.WriteLine("\nPress 'Enter' to continue..");
+            Console.ReadLine();
+            
+            Boolean validateWolfSelection = false; 
+            
+                while (!validateWolfSelection) {
+                Game.CharacterStats();
+                Random RandomDiceRoll = new Random();
+                int wolfDiceRoll = RandomDiceRoll.Next(0, 80);
+                Console.WriteLine($"\nYou choose to..");
+                Console.WriteLine($"\nA. Leave the cave immediately.");
+                Console.WriteLine($"\nB. Stay still.");
+                Console.WriteLine($"\nC. Subdue the wolf. {Game.rollDice("B")}% chance.");
+                string mountainWolfChoice = Console.ReadLine().ToUpper();
+                Thread.Sleep(3000);
+
+                if (mountainWolfChoice == "A") {
+                        Console.WriteLine("/nYou leave the cave - the Vanaheim mountain wolves are a huge threat, and there may of been more of them in the cave!");
+                        Thread.Sleep(3000);
+                        validateWolfSelection = true;
+                } else if (mountainWolfChoice == "B") {
+                        Boolean validateWolfSmellSelection = false; 
+                        Console.WriteLine("\nYou attempt to stay completely still, hoping the wolf ignores you.");
+                        Console.WriteLine("\nPress 'Enter' to continue..");
+                        Console.ReadLine();
+                        Console.WriteLine("\nThe wolf comes up to you and smells you, you feel it's yellow gaze piercing your soul.");
+                        while (!validateWolfSmellSelection) {
+                            Console.WriteLine("Your action..");
+                            Console.WriteLine($"\nA. Attempt to run out the cave. 50% chance.");
+                            Console.WriteLine($"\nB. Continue to stay still. 50% chance.");
+                            string mountainWolfSmellChoice = Console.ReadLine().ToUpper();
+                            Thread.Sleep(3000);
+                            if (mountainWolfSmellChoice == "A") {
+                                Console.WriteLine("\nYour wits tell you to get up and make an escape - mountain wolves are not to be messed with!");
+                                validateWolfSmellSelection = true;
+                            } else if (mountainWolfSmellChoice == "B") {
+                                Console.WriteLine("\nYou contine to stay still.. mountain wolves are very observant creatures - it notices a drop of sweat running down your face..");
+                                Console.WriteLine("\nPress 'Enter' to continue..");
+                                Console.ReadLine();
+                                Console.WriteLine("\nThis is enough to make the wolf bark at you. You lose your cool and make a run for the exit, narrowly escaping the beast and losing some of your ego in the process..");
+                                Game.RedTextWriteLine("- 1 Wit");
+                                --Game.CharacterRaceStore.characterWit;
+                                validateWolfSmellSelection = true;
+                            } else {
+                                Console.WriteLine("You must pick A or B...");
+                                validateWolfSmellSelection = false;
+                            }
+                        }
+                        validateWolfSelection = true;
+                } else if (mountainWolfChoice == "C") {
+                        if (wolfDiceRoll < Game.rollDice("B")) {
+                            Console.WriteLine("\nYou quickly get up and subdue the wolf.. carefully not killing it as to not anger the Wolf God Fenrir..");
+                            Console.WriteLine("\n'It had to be done' you say to yourself, you had to protect yourself.");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validateWolfSelection = true;
+                        } else {
+                            Console.WriteLine("\nYou attempt to subdue the wolf..");
+                            Thread.Sleep(3000);
+                            Console.WriteLine("\nThe Wolf notices your action.. It quickly attacks you with it's claws.");
+                            Game.RedTextWriteLine("- 1 HP");
+                            --Game.CharacterRaceStore.characterHealth;
+                            Game.validateGameOver();
+                            Console.WriteLine("\nYou run out of the cave, slipping on the frozen path outside..");
+                            Console.WriteLine("\nPress 'Enter' to continue..");
+                            Console.ReadLine();
+                            validateWolfSelection = true;
+                        }
+                } else {
+                        Console.WriteLine("You must pick A, B or C...");
+                        validateWolfSelection = false;
+                    }
+                }
+        }
+
     } // end of Items class
 
     public static class AcsiiArt
@@ -979,6 +1068,21 @@ namespace Adventure
              Game.GreenTextWriteLine(@"     ( `.__ _  ___,')      <_,-'__,'");
              Game.GreenTextWriteLine(@"      `'(_ )_)(_)_)'");
         }
+
+        public static void wolfArt() {
+            Game.RedTextWriteLine(@"           _        _");
+            Game.RedTextWriteLine(@"          /\\     ,'/|");
+            Game.RedTextWriteLine(@"        _|  |\-'-'_/_/");
+            Game.RedTextWriteLine(@"   __--'/`           \");
+            Game.RedTextWriteLine(@"       /              \");
+            Game.RedTextWriteLine(@"      /        'o.  |o'|");
+            Game.RedTextWriteLine(@"      |              \/");
+            Game.RedTextWriteLine(@"       \_          ___\");
+            Game.RedTextWriteLine(@"         `--._`.   \;//");
+            Game.RedTextWriteLine(@"              ;-.___,'");
+            Game.RedTextWriteLine(@"             /");
+            Game.RedTextWriteLine(@"           ,'");
+        }
     } // end of AcsiiArt class
 
     // ------------------------------------------------------ MAIN PROGRAM ---------------------------------------------------------------------
@@ -1038,6 +1142,15 @@ namespace Adventure
 
            Console.WriteLine("\nYou vacate the area where the Wood Elf resided and continue on your path.."); 
            Thread.Sleep(3000);
+
+           // Eighth decision
+           Items.wolfChoice();
+
+           Console.WriteLine("\nYou continue up the mountain and onto what can only be described as a giant tree branch of the Yggdrasil tree, you can almost make out the portal fully.."); 
+           Thread.Sleep(3000);
+
+           // Ninth decision
+           
 
            // Stops program from closing straight away
            Console.ReadLine();
